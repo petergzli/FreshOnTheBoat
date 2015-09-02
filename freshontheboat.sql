@@ -16,42 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `USERS`
---
-
-DROP TABLE IF EXISTS `USERS`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `USERS` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(60) DEFAULT NULL,
-  `firstname` varchar(60) DEFAULT NULL,
-  `lastname` varchar(60) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `encrypted_password` varchar(100) DEFAULT NULL,
-  `reset_password_token` varchar(100) DEFAULT NULL,
-  `authentication_token` varchar(100) DEFAULT NULL,
-  `bio` text,
-  `profile_photo` varchar(100) DEFAULT NULL,
-  `main_city` varchar(100) DEFAULT NULL,
-  `latitude` float DEFAULT NULL,
-  `longitude` float DEFAULT NULL,
-  `user_flagged` int(11) DEFAULT NULL,
-  `device_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `USERS`
---
-
-LOCK TABLES `USERS` WRITE;
-/*!40000 ALTER TABLE `USERS` DISABLE KEYS */;
-/*!40000 ALTER TABLE `USERS` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `forum_post_flagged`
 --
 
@@ -261,6 +225,42 @@ LOCK TABLES `user_checked_in` WRITE;
 /*!40000 ALTER TABLE `user_checked_in` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user_checked_in` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(60) DEFAULT NULL,
+  `firstname` varchar(60) DEFAULT NULL,
+  `lastname` varchar(60) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `encrypted_password` varchar(200) DEFAULT NULL,
+  `reset_password_token` varchar(100) DEFAULT NULL,
+  `authentication_token` varchar(200) DEFAULT NULL,
+  `bio` text,
+  `profile_photo` varchar(100) DEFAULT NULL,
+  `main_city` varchar(100) DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `user_flagged` int(11) DEFAULT NULL,
+  `device_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -271,4 +271,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-01 20:49:22
+-- Dump completed on 2015-09-02  1:16:38
