@@ -8,6 +8,8 @@ from freshontheboat.resources.postNewForumProfile import PostNewForumProfile
 from freshontheboat.resources.getForumProfiles import GetForumProfiles 
 from freshontheboat.resources.postNewForumComment import PostNewForumComment 
 from freshontheboat.resources.getForumComments import GetForumComments 
+from freshontheboat.resources.postForumProfileLikes import PostNewForumLikes 
+from freshontheboat.resources.getForumProfileLikes import GetNewForumLikes 
 
 api = Api(app)
 
@@ -18,6 +20,8 @@ api.add_resource(Login, '/users/login/')
 
 api.add_resource(PostNewForumProfile, '/forum/newpost/')
 api.add_resource(GetForumProfiles, '/forum/getresults/')
+api.add_resource(PostNewForumLikes, '/forum/likes/')
+api.add_resource(GetNewForumLikes, '/forum/getlikes/')
 
 api.add_resource(PostNewForumComment, '/forum/comments/newpost/')
 api.add_resource(GetForumComments, '/forum/comments/getcomments/')
