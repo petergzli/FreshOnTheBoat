@@ -12,6 +12,8 @@ from freshontheboat.resources.postForumProfileLikes import PostNewForumLikes
 from freshontheboat.resources.getForumProfileLikes import GetNewForumLikes 
 from freshontheboat.resources.postForumProfileCommentLikes import PostNewForumCommentLikes 
 from freshontheboat.resources.getForumProfileCommentLikes import GetNewForumCommentLikes 
+from freshontheboat.resources.postForumProfileFlags import PostForumProfileFlags 
+from freshontheboat.resources.postForumProfileCommentFlags import PostForumProfileCommentFlag 
 
 api = Api(app)
 
@@ -24,9 +26,11 @@ api.add_resource(PostNewForumProfile, '/forum/newpost/')
 api.add_resource(GetForumProfiles, '/forum/getresults/')
 api.add_resource(PostNewForumLikes, '/forum/likes/')
 api.add_resource(GetNewForumLikes, '/forum/getlikes/')
+api.add_resource(PostForumProfileFlags, '/forum/flag/')
 
 api.add_resource(PostNewForumComment, '/forum/comments/newpost/')
 api.add_resource(GetForumComments, '/forum/comments/getcomments/')
 api.add_resource(PostNewForumCommentLikes, '/forum/comments/likes/')
 api.add_resource(GetNewForumCommentLikes, '/forum/comments/getlikes/')
+api.add_resource(PostForumProfileCommentFlag, '/forum/comments/flag/')
 
