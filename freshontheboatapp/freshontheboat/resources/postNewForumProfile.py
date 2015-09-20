@@ -15,14 +15,17 @@ class PostNewForumProfile(Resource):
     self.reqparse.add_argument('latitude', type = float,  default="")
     self.reqparse.add_argument('longitude', type = float,  default="")
     self.reqparse.add_argument('location', type = str, default="")
+    self.reqparse.add_argument('location_pin_longitude', type = float, default = "")
+    self.reqparse.add_argument('location_pin_latitude', type= float, default = "")
     self.reqparse.add_argument('image_url', type = str, default = "")
     self.reqparse.add_argument('forum_post_flagged', type = int, default = 0)
+    self.reqparse.add_argument('category', type = int, default = 3)
     super(PostNewForumProfile, self).__init__()
 
   def post(self):
     args = self.reqparse.parse_args()
     currentDateTime = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-    newentry = Forumposts(title = args['title'], created_by = g.user.id, description = args['description'], latitude = args['latitude'], longitude = args['longitude'], created_at  = currentDateTime, location = args['location'], image_url = args['image_url'])
+    newentry = Forumposts(title = args['title'], created_by = g.user.id, description = args['description'], latitude = args['latitude'], longitude = args['longitude'], created_at  = currentDateTime, location = args['location'], image_url = args['image_url'], location_pin_longitude = args['location_pin_longitude'], location_pin_latitude = args['location_pin_latitude'], category = args['category'])
     db.session.add(newentry)
     db.session.commit()
     message = {'status': 'successful'} 

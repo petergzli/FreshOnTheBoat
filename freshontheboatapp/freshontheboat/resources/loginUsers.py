@@ -22,6 +22,7 @@ class Login(Resource):
         db.session.commit()
 
         message = {'status': 'successful', 'user': [{
+        'userid'   : g.user.id,
         'username' : g.user.username,
         'authentication_token' : g.user.authentication_token
         }]}

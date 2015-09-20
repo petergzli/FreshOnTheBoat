@@ -26,25 +26,29 @@ class RegisterNewUsers(Resource):
         args = self.reqparse.parse_args()
         password = args['encrypted_password']
         username = args['username']
+        email = args['email']
 
-        if username is None or password is None:
+        if username is None or password is None or email is None:
             return {'status': 'entryError', 'message': 'Username and password combination incorrect'}
 
         if User.query.filter_by(username = username).first() is not None:
             return {'status': 'usernameTaken', 'message': 'Username is taken'}
 
-        user = User(username = username, firstname = args['firstname'], lastname = args['lastname'])
+        if User.query.filter_by(email = email).first() is not None:
+            return {'stats': 'emailTaken', 'message': 'Email has been registered'}
+
+        user = User(username = username, firstname = args['firstname'], lastname = args['lastname'], email = email)
         user.hash_password(password)
         
         db.session.add(user)
         db.session.commit()
         g.user = user
-        print user.id
         token = g.user.generate_auth_token()
         user.authentication_token = token.decode('ascii') 
         db.session.commit()
         
         message = {'status': 'successful', 'user': [{
+        'userid'   : g.user.id,
         'username' : user.username,
         'authentication_token' : user.authentication_token
         }]}

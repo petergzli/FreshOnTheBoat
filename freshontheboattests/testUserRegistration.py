@@ -2,6 +2,6 @@
 import requests
 
 url = 'http://127.0.0.1:5000/users/new/'
-params = {"firstname": "Carly", "lastname": "Jepsen", "username": "callmemaybe", "encrypted_password": "baby"}
+params = {"firstname": "Carly", "lastname": "Jepsen", "username": "callbaby", "encrypted_password": "baby"}
 HTTPresponse = requests.post(url, data = params)
 print HTTPresponse.json()

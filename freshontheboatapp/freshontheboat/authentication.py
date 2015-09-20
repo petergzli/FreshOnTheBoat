@@ -18,4 +18,4 @@ def verify_password(username_or_token, password):
 
 @auth.error_handler
 def unauthorized():
-    return make_response(jsonify({'message': 'Unauthorized'}), 403)
+    return make_response(jsonify({'message': 'Unauthorized access'}), 403)
