@@ -9,3 +9,6 @@ class ForumPostComments(db.Model):
     created_at = db.Column(db.DateTime)
     image_url = db.Column(db.String)
     comment_flagged = db.Column(db.Integer)
+    replied_to_forum_id = db.Column(db.Integer)
+    location_pin_latitude = db.Column(db.Float)
+    location_pin_longitude = db.Column(db.Float)
