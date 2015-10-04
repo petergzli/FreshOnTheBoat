@@ -21,7 +21,7 @@ class GetForumComments(Resource):
     json_results = []
     for result in results:
         username = User.query.get(result.poster_id).username
-        resultDictionary = {'id': result.id, 'image_url': result.image_url, 'replied_to_forum_id': result.replied_to_forum_id, 'location_pin_latitude': result.location_pin_latitude, 'location_pin_longitude': result.location_pin_longitude, 'poster_id': username, 'body': result.body, 'created_at': str(result.created_at)}
+        resultDictionary = {'id': result.id, 'image_url': result.image_url, 'replied_to_forum_id': result.replied_to_forum_id, 'location_pin_latitude': result.location_pin_latitude, 'location_pin_longitude': result.location_pin_longitude, 'poster_id': result.poster_id, 'poster_username': username, 'body': result.body, 'created_at': str(result.created_at)}
         json_results.append(resultDictionary)
 
     response = {'status': 'successful', 'results' : json_results}

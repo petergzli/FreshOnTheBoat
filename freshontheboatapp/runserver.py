@@ -1,2 +1,2 @@
 from freshontheboat import app
-app.run(debug='true')
+app.run(host='0.0.0.0',debug='true')
