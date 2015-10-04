@@ -16,7 +16,8 @@ class GetForumProfiles(Resource):
     args = self.reqparse.parse_args()
 
     if args['latitude'] and args['longitude'] and args['radius']:
-        query = 'SELECT id, ( 3959 * acos( cos( radians( %(latitude)s ) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians( %(longitude)s ) ) + sin( radians( %(latitude)s ) ) * sin( radians( latitude ) ) ) ) AS distance FROM forum_profile HAVING distance < %(radius)s ORDER BY distance LIMIT %(limit)s' % {"latitude": args['latitude'], "longitude": args['longitude'], "radius": args['radius'], "limit": args['limit']}
+        #query = 'SELECT id, ( 3959 * acos( cos( radians( %(latitude)s ) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians( %(longitude)s ) ) + sin( radians( %(latitude)s ) ) * sin( radians( latitude ) ) ) ) AS distance FROM forum_profile HAVING distance < %(radius)s ORDER BY distance LIMIT %(limit)s' % {"latitude": args['latitude'], "longitude": args['longitude'], "radius": args['radius'], "limit": args['limit']}
+        query = 'SELECT id, (3959 * acos(cos(radians(%(latitude)s)) * cos(radians(latitude)) * cos(radians(longitude) - radians(%(longitude)s)) + sin(radians(%(latitude)s)) * sin(radians(latitude)))) AS distance FROM forum_profile WHERE (3959 * acos(cos(radians(%(latitude)s)) * cos(radians(latitude)) * cos(radians(longitude) - radians(%(longitude)s)) + sin(radians(%(latitude)s))     * sin(radians(latitude)))) < %(radius)s ORDER BY distance LIMIT %(limit)s' % {"latitude": args['latitude'], "longitude": args['longitude'], "radius": args['radius'], "limit": args['limit']} 
         results = Forumposts.query.from_statement(query).all()
 
     json_results = []
