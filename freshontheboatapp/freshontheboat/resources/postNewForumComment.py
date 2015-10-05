@@ -30,6 +30,6 @@ class PostNewForumComment(Resource):
         newentry.location_pin_longitude = args['location_pin_longitude']
     db.session.add(newentry)
     db.session.commit()
-    message = {'status': 'successful'}
+    message = {'status': 'successful', 'id': newentry.id, 'created_at': str(newentry.created_at)}
     return message
 
