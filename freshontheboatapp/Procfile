@@ -1,1 +1,2 @@
-web: python runserver.py
+web: gunicorn freshontheboat:app --log-file=-
+heroku ps:scale web=1
