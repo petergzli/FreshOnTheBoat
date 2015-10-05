@@ -1,1 +1,1 @@
-web: python runserver.py 
+web: gunicorn freshontheboat:app --log-file - 
