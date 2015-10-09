@@ -25,7 +25,7 @@ class GetForumProfiles(Resource):
         user = User.query.get(result.created_by)
         username = user.username
         userid = user.id 
-        resultDictionary = {'id': result.id, 'image_url': result.image_url, 'title': result.title, 'created_by': username, 'description': result.description, 'latitude': result.latitude, 'longitude': result.longitude, 'created_at': str(result.created_at), 'location': result.location, 'created_by_id': userid, 'category': result.category, 'location_pin_latitude': result.location_pin_latitude, 'location_pin_longitude': result.location_pin_longitude}
+        resultDictionary = {'id': result.id, 'image_url': result.image_url, 'title': result.title, 'created_by': username, 'description': result.description, 'latitude': result.latitude, 'longitude': result.longitude, 'created_at': str(result.created_at), 'location': result.location, 'created_by_id': userid, 'category': result.category, 'location_pin_latitude': result.location_pin_latitude, 'location_pin_longitude': result.location_pin_longitude, 'total_likes': result.total_likes}
         json_results.append(resultDictionary)
 
     response = {'status': 'successful', 'results' : json_results}

@@ -15,3 +15,11 @@ class Forumposts(db.Model):
     created_at = db.Column(db.DateTime)
     image_url = db.Column(db.String)
     forum_post_flagged = db.Column(db.Integer)
+    total_likes = db.Column(db.Integer)
+
+    def userHasLiked(self):
+        if self.total_likes != None:
+            self.total_likes = self.total_likes + 1
+        else:
+            self.total_likes = 1  
+
