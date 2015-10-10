@@ -12,3 +12,10 @@ class ForumPostComments(db.Model):
     replied_to_forum_id = db.Column(db.Integer)
     location_pin_latitude = db.Column(db.Float)
     location_pin_longitude = db.Column(db.Float)
+    total_likes = db.Column(db.Integer)
+    
+    def userHasLiked(self):
+        if self.total_likes != None:
+            self.total_likes = self.total_likes + 1
+        else:
+            self.total_likes = 1

@@ -7,3 +7,5 @@ class ForumPostLikes(db.Model):
     user_who_liked  = db.Column(db.Integer)
     likes = db.Column(db.Integer)
     dislikes = db.Column(db.Integer)
+
+        

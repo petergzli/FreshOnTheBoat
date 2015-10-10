@@ -25,7 +25,6 @@ class PostNewForumLikes(Resource):
     else:
         newentry = ForumPostLikes(forum_profile_id = args['forum_profile_id'], user_who_liked = g.user.id, likes = args['likes'], dislikes = args['dislikes'])
         db.session.add(newentry)
-        #db.session.commit()
         updatePost = Forumposts.query.get(args['forum_profile_id'])
         updatePost.userHasLiked()        
         db.session.commit()

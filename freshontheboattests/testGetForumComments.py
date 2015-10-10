@@ -2,6 +2,6 @@
 import requests
 
 url = 'http://127.0.0.1:5000/forum/comments/getcomments/'
-parameters = {'forum_id' : 2}
+parameters = {'forum_id' : 2, 'user_id' : 1}
 HTTPresponse = requests.get(url, params  = parameters)
 print HTTPresponse.json()
