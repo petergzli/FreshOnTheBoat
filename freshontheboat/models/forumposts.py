@@ -22,4 +22,8 @@ class Forumposts(db.Model):
             self.total_likes = self.total_likes + 1
         else:
             self.total_likes = 1  
-
+    def userHasDisliked(self):
+        if self.total_likes != None:
+            self.total_likes = self.total_likes - 1
+        else:
+            self.total_likes = -1

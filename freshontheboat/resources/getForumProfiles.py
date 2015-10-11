@@ -25,7 +25,7 @@ class GetForumProfiles(Resource):
     json_results = []
     for result in results:
         user = User.query.get(result.created_by)
-        resultDictionary = {'id': result.id, 'image_url': result.image_url, 'title': result.title, 'created_by': user.username, 'description': result.description, 'latitude': result.latitude, 'longitude': result.longitude, 'created_at': str(result.created_at), 'location': result.location, 'created_by_id': user.id, 'category': result.category, 'location_pin_latitude': result.location_pin_latitude, 'location_pin_longitude': result.location_pin_longitude, 'total_likes': result.total_likes, 'user_has_liked': False, 'total_comments': ForumPostComments.query.filter(ForumPostComments.forum_id==result.id).count()}
+        resultDictionary = {'id': result.id, 'image_url': result.image_url, 'title': result.title, 'created_by': user.username, 'description': result.description, 'latitude': result.latitude, 'longitude': result.longitude, 'created_at': str(result.created_at), 'location': result.location, 'created_by_id': user.id, 'category': result.category, 'location_pin_latitude': result.location_pin_latitude, 'location_pin_longitude': result.location_pin_longitude, 'total_likes': result.total_likes, 'user_has_liked': 0, 'total_comments': ForumPostComments.query.filter(ForumPostComments.forum_id==result.id).count()}
 
         if args['user_id'] != None:
             resultDictionary['user_has_liked'] = self.userHasLiked(args['user_id'], result.id) 
@@ -37,7 +37,9 @@ class GetForumProfiles(Resource):
                        
   def userHasLiked(self, userId, forumId):
     likedStatus = ForumPostLikes.query.filter(ForumPostLikes.user_who_liked == userId, ForumPostLikes.forum_profile_id == forumId).first()
-    if likedStatus ==  None:
-        return False
-    else:
-        return True 
+    if likedStatus == None:
+        return 0
+    elif likedStatus.likes == 1:
+        return 1
+    elif likedStatus.dislikes == -1:
+        return -1 
