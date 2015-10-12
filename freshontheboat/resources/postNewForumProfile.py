@@ -25,7 +25,7 @@ class PostNewForumProfile(Resource):
   def post(self):
     args = self.reqparse.parse_args()
     currentDateTime = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-    newentry = Forumposts(title = args['title'], created_by = g.user.id, description = args['description'], latitude = args['latitude'], longitude = args['longitude'], created_at  = currentDateTime, location = args['location'], image_url = args['image_url'], category = args['category'])
+    newentry = Forumposts(title = args['title'], created_by = g.user.id, description = args['description'], latitude = args['latitude'], longitude = args['longitude'], created_at  = currentDateTime, created_at_time = currentDateTime, location = args['location'], image_url = args['image_url'], category = args['category'])
 
     if args['location_pin_longitude'] != "" and args['location_pin_latitude'] != "":
         newentry.location_pin_longitude = args['location_pin_longitude']

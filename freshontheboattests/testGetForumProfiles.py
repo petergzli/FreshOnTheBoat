@@ -2,6 +2,6 @@
 import requests
 
 url = 'http://127.0.0.1:5000/forum/getresults/'
-parameters = {'latitude': 34.068699, 'longitude': -118.445557, 'user_id': 1}
+parameters = {'latitude': 34.068699, 'longitude': -118.445557, 'user_id': 1, 'category': 0}
 HTTPresponse = requests.get(url, params  = parameters) 
 print HTTPresponse.json()

@@ -13,6 +13,7 @@ class Forumposts(db.Model):
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
     created_at = db.Column(db.DateTime)
+    created_at_time = db.Column(db.DateTime)
     image_url = db.Column(db.String)
     forum_post_flagged = db.Column(db.Integer)
     total_likes = db.Column(db.Integer)
