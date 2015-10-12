@@ -30,7 +30,7 @@ class GetForumProfiles(Resource):
         results = Forumposts.query.from_statement(query).all()
 
     if args['preference'] == 2:
-        query = 'SELECT id, (3959 * acos(cos(radians(%(latitude)s)) * cos(radians(latitude)) * cos(radians(longitude) - radians(%(longitude)s)) + sin(radians(%(latitude)s)) *     sin(radians(latitude)))) AS distance FROM forum_profile WHERE (3959 * acos(cos(radians(%(latitude)s)) * cos(radians(latitude)) * cos(radians(longitude) - radians(%(longitude)s)) + sin(radians(%(latitude)s)) * sin(radians(latitude)))) < %(radius)s AND category=%(category)s ORDER BY total_likes, distance LIMIT %(limit)s' % {"latitude": args['latitude'], "longitude": args['longitude'], "radius": args['radius'], "limit": args['limit'], "category": args['category']}
+        query = 'SELECT id, (3959 * acos(cos(radians(%(latitude)s)) * cos(radians(latitude)) * cos(radians(longitude) - radians(%(longitude)s)) + sin(radians(%(latitude)s)) *     sin(radians(latitude)))) AS distance FROM forum_profile WHERE (3959 * acos(cos(radians(%(latitude)s)) * cos(radians(latitude)) * cos(radians(longitude) - radians(%(longitude)s)) + sin(radians(%(latitude)s)) * sin(radians(latitude)))) < %(radius)s AND category=%(category)s ORDER BY total_likes DESC, distance LIMIT %(limit)s' % {"latitude": args['latitude'], "longitude": args['longitude'], "radius": args['radius'], "limit": args['limit'], "category": args['category']}
         results = Forumposts.query.from_statement(query).all()
 
     json_results = []
