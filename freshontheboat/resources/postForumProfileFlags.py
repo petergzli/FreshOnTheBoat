@@ -14,7 +14,7 @@ class PostForumProfileFlags(Resource):
 
   def post(self):
     args = self.reqparse.parse_args()
-    results = ForumPostFlagged.query.filter_by(user_who_flagged = g.user.id).first()
+    results = ForumPostFlagged.query.filter(ForumPostFlagged.user_who_flagged == g.user.id, ForumPostFlagged.forum_profile_flagged_id == args['forum_profile_flagged_id']).first()
     if results > 0:
         return {'status': 'AlreadyFlagged'}
     else:
