@@ -42,7 +42,10 @@ class PostNewForumLikes(Resource):
         newentry = ForumPostLikes(forum_profile_id = args['forum_profile_id'], user_who_liked = g.user.id, likes = args['likes'], dislikes = args['dislikes'])
         db.session.add(newentry)
         updatePost = Forumposts.query.get(args['forum_profile_id'])
-        updatePost.userHasLiked()        
+        if args['likes'] != 0:
+            updatePost.userHasLiked()        
+        if args['dislikes'] != 0:
+            updatePost.userHasDisliked()
         db.session.commit()
         message = {'status': 'successful'}
         return message
