@@ -15,7 +15,7 @@ class GetAccountForumProfiles(Resource):
   #Preference: 0 = hottest, 1 = newest, 2 = top
   def get(self):
     args = self.reqparse.parse_args()
-    query = 'SELECT id, round(cast(log(greatest(abs(total_likes), 1)) * sign(total_likes) + (extract(epoch from timestamp) - 1134028003) / 45000.0 as numeric), 7) AS hottest FROM forum_profile WHERE id=ALL(select forum_profile_id from forum_profile_likes where user_who_liked=%(userId)s AND likes=1) ORDER BY hottest' % {"userId":args['user_id']} 
+    query = 'SELECT id, round(cast(log(greatest(abs(total_likes), 1)) * sign(total_likes) + (extract(epoch from timestamp) - 1134028003) / 45000.0 as numeric), 7) AS hottest FROM forum_profile WHERE id IN (select forum_profile_id from forum_profile_likes where user_who_liked=%(userId)s AND likes=1) ORDER BY hottest' % {"userId":args['user_id']} 
     results = Forumposts.query.from_statement(query).all()
 
     json_results = []
