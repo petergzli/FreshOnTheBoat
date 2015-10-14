@@ -42,15 +42,15 @@ class RegisterNewUsers(Resource):
         
         db.session.add(user)
         db.session.commit()
-        g.user = user
-        token = g.user.generate_auth_token()
-        user.authentication_token = token.decode('ascii') 
+        #g.user = user
+        #token = g.user.generate_auth_token()
+        #user.authentication_token = token.decode('ascii') 
         db.session.commit()
         
         message = {'status': 'successful', 'user': [{
-        'userid'   : g.user.id,
-        'username' : user.username,
-        'authentication_token' : user.authentication_token
+        'userid'   : user.id,
+        'username' : user.username
+        
         }]}
         return message
 
